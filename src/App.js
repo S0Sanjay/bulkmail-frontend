@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 import History from "./History";
 
 // backend url - change this to your deployed backend link
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://bulkmail-backend-one.vercel.app/";
 
 function App() {
   const [subject, setsubject] = useState("");

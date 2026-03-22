@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 import History from "./History";
-const BACKEND_URL = "https://bulkmail-backend-one.vercel.app";
+const BACKEND_URL = "";
 
 function App() {
   const [subject, setsubject] = useState("");

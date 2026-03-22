@@ -2,8 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 import History from "./History";
-
-// backend url - change this to your deployed backend link
 const BACKEND_URL = "https://bulkmail-backend-one.vercel.app/";
 
 function App() {
@@ -22,17 +20,15 @@ function App() {
     setmsg(evt.target.value);
   }
 
-function handlefile(event) {
-    const file = event.target.files[0]
-    console.log(file)
-
-    // check if file exists
+  function handlefile(event) {
+    const file = event.target.files[0];
+    console.log(file);
     if (!file) {
-      return
+      return;
     }
 
-    const reader = new FileReader()
-    reader.onload = function(e) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
       const data = e.target.result;
       const workbook = XLSX.read(data, { type: "binary" });
       const sheetName = workbook.SheetNames[0];
@@ -48,7 +44,6 @@ function handlefile(event) {
   }
 
   function send() {
-    // simple validation before sending
     if (!subject || !msg || emailList.length === 0) {
       setresultMsg("Please fill subject, message and upload an email list!");
       return;
@@ -68,7 +63,6 @@ function handlefile(event) {
         if (data.data.success === true) {
           setresultMsg("Emails Sent Successfully!");
           setstatus(false);
-          // clear form after success
           setsubject("");
           setmsg("");
           setemailList([]);

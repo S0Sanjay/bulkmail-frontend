@@ -74,4 +74,4 @@ function History({ backendUrl }) {
     )
 }
 
-export default History;
+export default History

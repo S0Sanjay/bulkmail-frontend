@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import axios from "axios"
 
 function History({ backendUrl }) {
@@ -6,11 +6,7 @@ function History({ backendUrl }) {
     const [historyList, sethistoryList] = useState([])
     const [loading, setloading] = useState(true)
 
-    useEffect(function() {
-        fetchHistory()
-    }, [])
-
-    function fetchHistory() {
+    const fetchHistory = useCallback(function() {
         setloading(true)
         axios.get(backendUrl + "/history")
         .then(function(data) {
@@ -22,7 +18,11 @@ function History({ backendUrl }) {
             console.log("Error fetching history:", err)
             setloading(false)
         })
-    }
+    }, [backendUrl])
+
+    useEffect(function() {
+        fetchHistory()
+    }, [fetchHistory])
 
     return (
         <div className="bg-gray-100 min-h-screen px-5 py-5">
